@@ -5,7 +5,7 @@
 
     <h1>{{blogPost.data.attributes.title}}</h1>
     <h2>{{blogPost.data.attributes.summary}}</h2>
-    <p>{{blogPost.data.attributes.body}}</p>
+    <p class="wh-pre-wrap">{{blogPost.data.attributes.body}}</p>
     </div>
   </div>
 
@@ -21,7 +21,9 @@
   margin: 10px 10px;
   padding: 20px;
 }
-
+.wh-pre-wrap {
+white-space: pre-wrap;
+}
 </style>
 <script>
 import gql from 'graphql-tag'
