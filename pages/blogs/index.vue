@@ -1,15 +1,23 @@
 <template>
   <div>
-  <h1>Some Content</h1>
-  <p>About contents here</p>
     <h1>Latest News</h1>
-      <div class="latest-news">,
-    <div class="white-card" v-for="blogPost in blogPosts.data" v-bind:key="blogPost.id">
-            <NuxtLink to="blog"><h2>{{blogPost.attributes.title}}</h2></NuxtLink>
+      <div class="latest-news">
+
+
+          <div v-if="$apollo.loading"><h1>Loading...</h1></div>
+    <div v-else class="white-card" v-for="blogPost in blogPosts.data" v-bind:key="blogPost.id">
+            <NuxtLink :to="`blog/${blogPost.id}`"><h2>{{blogPost.attributes.title}}</h2></NuxtLink>
             <p>{{blogPost.attributes.summary}}</p>
 
     </div>
+
   </div>
+      <div class="page-info">
+        <button v-on:click="previousPage()" ><</button>
+            {{pageNumber}}
+        <button v-on:click="nextPage()" >></button>
+    </div>
+
   </div>
 
 </template>
@@ -35,6 +43,14 @@ export default {
     return {
       pageNumber: 1,
     }
+  },
+  methods: {
+      nextPage(){
+          this.pageNumber++;
+      },
+      previousPage(){
+          this.pageNumber--;
+      }
   },
   apollo: {
     blogPosts: {

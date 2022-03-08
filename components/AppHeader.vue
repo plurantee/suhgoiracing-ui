@@ -1,8 +1,8 @@
 <template>
     <div class="app-header">
             <ul class="nav-list">
-                <li>Home</li>
-                <li>Blogs</li>
+                <li><NuxtLink to="/">Home</NuxtLink></li>
+                <li><NuxtLink to="/blogs">Blogs</NuxtLink></li>
             </ul>
     </div>
 </template>
