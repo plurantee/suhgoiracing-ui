@@ -30,14 +30,18 @@
         </div>
       </div>
     </div>
-    <div class="page-info">
-      <button v-bind:disabled="pageNumber < 2" class="btn page-button" v-on:click="previousPage()"><</button>
+    <div v-if="!$apollo.loading" class="page-info">
+      <button
+        v-bind:disabled="pageNumber < 2"
+        class="btn page-button"
+        v-on:click="previousPage()"
+      >&lt;</button>
       {{ pageNumber }}
       <button
         v-bind:disabled="pageNumber >= blogPosts.meta.pagination.pageCount"
         class="btn page-button"
         v-on:click="nextPage(blogPosts.data)"
-      >></button>
+      >&gt;</button>
     </div>
   </div>
 </template>
@@ -54,7 +58,6 @@
   margin: 15px 40px;
   display: flex;
   justify-content: center;
-  font-size: 1.3vw;
 }
 .latest-news {
   display: flex;

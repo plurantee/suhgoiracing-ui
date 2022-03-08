@@ -9,7 +9,7 @@
       </div>
       <div class="article-body">
         <h3>{{ blogPost.data.attributes.title }}</h3>
-        <div v-html="$md.render(blogPost.data.attributes.body)"></div>
+        <div class="" v-html="$md.render(blogPost.data.attributes.body)"></div>
       </div>
     </div>
   </div>

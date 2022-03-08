@@ -65,6 +65,11 @@ export default {
 
       query: gql`query GET_BLOG_POSTS($pageNumber: Int!) {
         blogPosts(pagination:{page: $pageNumber, pageSize: 3}) {
+          meta{
+            pagination{
+              pageCount
+            }
+          }
           data {
             id
             attributes {
