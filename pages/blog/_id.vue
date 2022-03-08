@@ -3,23 +3,31 @@
     <div v-if="$apollo.loading">
       <h1>Loading...</h1>
     </div>
-    <div v-else>
-      <h1>{{ blogPost.data.attributes.title }}</h1>
-      <h2>{{ blogPost.data.attributes.summary }}</h2>
-      <p class="wh-pre-wrap">{{ blogPost.data.attributes.body }}</p>
+    <div v-else class="article">
+      <div class="image-head">
+        <img class="img-fluid" :src="`${blogPost.data.attributes.imageLink}`" />
+      </div>
+      <div class="article-body">
+        <h3>{{ blogPost.data.attributes.title }}</h3>
+        <p class="wh-pre-wrap">{{ blogPost.data.attributes.body }}</p>
+      </div>
     </div>
   </div>
 </template>
 <style scoped>
-.latest-news {
-  display: flex;
+.article-body {
+  max-width: 1600px;
+  margin: 30px 30px;
 }
-.white-card {
-  width: 25%;
-  background-color: white;
-  box-shadow: 10px 5px 5px 5px rgba(68, 68, 68, 0.2);
-  margin: 10px 10px;
-  padding: 20px;
+.article {
+  margin-top: 2vh;
+}
+.image-head {
+  display: flex;
+  justify-content: center;
+}
+.image-head > img {
+  width: 1000px;
 }
 .wh-pre-wrap {
   white-space: pre-wrap;
@@ -30,8 +38,10 @@ import gql from 'graphql-tag'
 //import { blogsQuery } from '~graphql/query'
 
 export default {
-  head: {
-    title: 'Suhghoi Racing - View Blog',
+  head() {
+    return {
+      title: 'Suhghoi Racing - ' + this.blogPost?.data?.attributes?.title,
+    }
   },
   data() {
     return {
@@ -50,7 +60,12 @@ export default {
             attributes {
               title
               summary
+              imageLink
+              author
+              views
               body
+              category
+              publishedAt
             }
           }
         }
