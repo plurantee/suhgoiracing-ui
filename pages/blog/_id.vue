@@ -1,4 +1,4 @@
-<template>
+<template lang="md">
   <div>
     <div v-if="$apollo.loading">
       <h1>Loading...</h1>
@@ -9,7 +9,7 @@
       </div>
       <div class="article-body">
         <h3>{{ blogPost.data.attributes.title }}</h3>
-        <p class="wh-pre-wrap">{{ blogPost.data.attributes.body }}</p>
+        <div v-html="$md.render(blogPost.data.attributes.body)"></div>
       </div>
     </div>
   </div>
@@ -49,6 +49,9 @@ export default {
     }
   },
   methods: {
+    toHtml(body) {
+      return body;
+    }
   },
   apollo: {
     blogPost: {
