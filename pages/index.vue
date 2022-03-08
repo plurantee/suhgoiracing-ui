@@ -1,17 +1,17 @@
 <template>
   <div>
-  <h1>Some Content</h1>
-  <p>About contents here</p>
+    <h1>Some Content</h1>
+    <p>About contents here</p>
     <h1>Latest News</h1>
-      <div class="latest-news">,
-    <div class="white-card" v-for="blogPost in blogPosts.data" v-bind:key="blogPost.id">
-            <NuxtLink to="blog"><h2>{{blogPost.attributes.title}}</h2></NuxtLink>
-            <p>{{blogPost.attributes.summary}}</p>
-
+    <div class="latest-news">
+      <div class="white-card" v-for="blogPost in blogPosts.data" v-bind:key="blogPost.id">
+        <NuxtLink :to="`blog/${blogPost.id}`">
+          <h2>{{ blogPost.attributes.title }}</h2>
+        </NuxtLink>
+        <p>{{ blogPost.attributes.summary }}</p>
+      </div>
     </div>
   </div>
-  </div>
-
 </template>
 <style scoped>
 .latest-news {
@@ -24,7 +24,6 @@
   margin: 10px 10px;
   padding: 20px;
 }
-
 </style>
 <script>
 import gql from 'graphql-tag'
@@ -40,7 +39,7 @@ export default {
     blogPosts: {
       preFetch: true,
 
-      query: gql `query GET_BLOG_POSTS($pageNumber: Int!) {
+      query: gql`query GET_BLOG_POSTS($pageNumber: Int!) {
         blogPosts(pagination:{page: $pageNumber, pageSize: 3}) {
           data {
             id
@@ -53,7 +52,7 @@ export default {
         }
       }`,
       variables() {
-        return {pageNumber: this.pageNumber}
+        return { pageNumber: this.pageNumber }
       }
     }
   }
