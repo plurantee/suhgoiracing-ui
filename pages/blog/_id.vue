@@ -51,7 +51,7 @@ export default {
         }
       }`,
       variables() {
-        return {  blogId: 1 }
+        return {  blogId: this.blogId }
       }
     }
   }
