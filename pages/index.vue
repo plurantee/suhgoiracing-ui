@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="container">
     <div v-if="$apollo.loading">
       <h1>Loading...</h1>
     </div>
-    <div v-else class=" col-md-12">
+    <div v-else class="container">
       <div class="col-md-12 row">
-        <div class="col-md-8 white-card card latest-blog-container">
+        <div class="col-md-8 white-card latest-blog-container">
           <div class="latest-blog-image">
                       <img
             :src="`${blogPosts.data[0].attributes.imageLink}`"

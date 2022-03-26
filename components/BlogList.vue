@@ -1,7 +1,8 @@
 <template>
 
-  <div class="row col-md-12">
-        <div v-if="$apollo.loading">
+  <div class="container">
+    <div class="col-md-12 row ">
+              <div v-if="$apollo.loading">
       <h1>Loading...</h1>
     </div>
     <div v-else class="col-md-8">
@@ -31,9 +32,12 @@
 
       </div>
     </div>
-    <div class="col-md-4">
+      <div class="col-md-4">
 
+      </div>
     </div>
+
+
     <div v-if="!$apollo.loading" class="page-info">
       <button
         v-bind:disabled="pageNumber < 2"
@@ -50,6 +54,9 @@
   </div>
 </template>
 <style scoped>
+.row {
+  padding: 0!important;
+}
 .card-body > a {
   color: inherit;
 }

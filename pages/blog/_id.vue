@@ -1,10 +1,10 @@
 <template lang="md">
-  <div>
+  <div class="container">
     <div v-if="$apollo.loading">
       <h1>Loading...</h1>
     </div>
-    <div v-else class="article col-md-12 row">
-      <div class="blog-content col-md-8">
+    <div v-else>
+      <div class="article col-md-12 row">      <div class="blog-content col-md-8">
       <h3 class="blog-title">{{ blogPost.data.attributes.title }}</h3>
       <p class="blog-summary">{{ blogPost.data.attributes.summary }}</p>
       <div class="image-head">
@@ -13,8 +13,9 @@
       <div class="article-body">
         <div class="" v-html="$md.render(blogPost.data.attributes.body)"></div>
       </div>
-      <div class="fb-like" :data-href="`${url}`" data-width="" data-layout="standard" data-action="like" data-size="large" data-share="true"></div>
-      </div>
+      <div class="fb-like container" :data-href="`${url}`" data-width="" data-layout="standard" data-action="like" data-size="large" data-share="true"></div>
+      </div></div>
+
     </div>
   </div>
 </template>
@@ -25,7 +26,7 @@
   font-size: 1.2rem;
 }
 .blog-content {
-  margin: 30px 30px;
+  margin: 1px 1px;
 }
 .article-body {
   margin-top: 50px;
@@ -43,6 +44,11 @@
 }
 .wh-pre-wrap {
   white-space: pre-wrap;
+}
+@media only screen and (min-width: 992px) {
+.blog-content {
+  margin: 30px 30px;
+}
 }
 </style>
 <script>
