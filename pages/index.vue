@@ -4,8 +4,8 @@
       <h1>Loading...</h1>
     </div>
     <div v-else class=" col-md-12">
-      <div class="latest-blog">
-        <div class="white-card card latest-blog-container">
+      <div class="col-md-12 row">
+        <div class="col-md-8 white-card card latest-blog-container">
           <div class="latest-blog-image">
                       <img
             :src="`${blogPosts.data[0].attributes.imageLink}`"
@@ -20,14 +20,16 @@
             </a>
           </div>
           </div>
-
+          <div class="col-md-3"></div>
       </div>
       <div class="blog-list">
-        <div class="mw-limited row col-md-12">              <div
-        class="white-card  card col-md-12"
-        v-for="blogPost in blogPosts.data"
-        v-bind:key="blogPost.id"
-      >
+        <div class="col-md-12 row">
+<div class="mw-limited row col-md-8">
+          <div
+            class="white-card col-md-12"
+            v-for="blogPost in blogPosts.data"
+            v-bind:key="blogPost.id"
+          >
         <div class="row col-md-12">
           <img
             :src="`${blogPost.attributes.imageLink}`"
@@ -35,16 +37,19 @@
             :alt="`${blogPost.attributes.title}`"
           />
           <div class="card-body col-md-6">
-            <p>{{ blogPost.attributes.category }}</p>
-            <NuxtLink :to="`blog/${blogPost.id}`">
+            <p class="category">{{ blogPost.attributes.category }}</p>
+            <a target="_blank" :href="`blog/${blogPost.id}`">
               <h2>{{ blogPost.attributes.title }}</h2>
-            </NuxtLink>
+            </a>
             <p style>{{ blogPost.attributes.summary }}</p>
             <div class>Author: {{ blogPost.attributes.author || 'Florante Rapio' }}</div>
             <div class>Created At: {{ blogPost.attributes.publishedAt }}</div>
           </div>
         </div>
       </div></div>
+      <div class="col-md-4"></div>
+        </div>
+
 
       </div>
 
@@ -52,6 +57,9 @@
   </div>
 </template>
 <style scoped>
+.card-body > a {
+  color: inherit;
+}
 .latest-blog {
   display:flex;
     align-items: center;
@@ -89,7 +97,6 @@
 }
 .white-card {
   background-color: white;
-  box-shadow: 10px 5px 5px 1px rgba(68, 68, 68, 0.1);
   margin: 10px 10px;
   padding: 20px;
 }

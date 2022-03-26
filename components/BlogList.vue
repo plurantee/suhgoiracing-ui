@@ -1,8 +1,13 @@
 <template>
-  <div>
+
+  <div class="row col-md-12">
+        <div v-if="$apollo.loading">
+      <h1>Loading...</h1>
+    </div>
+    <div v-else class="col-md-8">
           <div class="blog-list">
-        <div class="mw-limited row col-md-12">              <div
-        class="white-card  card col-md-12"
+        <div class="mw-limited col-md-12">              <div
+        class="white-card col-md-12"
         v-for="blogPost in blogPosts.data"
         v-bind:key="blogPost.id"
       >
@@ -14,9 +19,9 @@
           />
           <div class="card-body col-md-6">
             <p>{{ blogPost.attributes.category }}</p>
-            <NuxtLink :to="`blog/${blogPost.id}`">
+            <a target="_blank" :href="`blog/${blogPost.id}`">
               <h2>{{ blogPost.attributes.title }}</h2>
-            </NuxtLink>
+            </a>
             <p style>{{ blogPost.attributes.summary }}</p>
             <div class>Author: {{ blogPost.attributes.author || 'Florante Rapio' }}</div>
             <div class>Created At: {{ blogPost.attributes.publishedAt }}</div>
@@ -25,6 +30,10 @@
       </div></div>
 
       </div>
+    </div>
+    <div class="col-md-4">
+
+    </div>
     <div v-if="!$apollo.loading" class="page-info">
       <button
         v-bind:disabled="pageNumber < 2"
@@ -41,6 +50,9 @@
   </div>
 </template>
 <style scoped>
+.card-body > a {
+  color: inherit;
+}
 .list-img {
   max-width: 95%;
 }
@@ -71,7 +83,6 @@
 }
 .white-card {
   background-color: white;
-  box-shadow: 10px 5px 5px 5px rgba(68, 68, 68, 0.2);
   margin: 10px 10px;
   padding: 20px;
 }
