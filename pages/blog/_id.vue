@@ -40,7 +40,7 @@ import gql from 'graphql-tag'
 export default {
   head() {
     return {
-      title: 'Suhghoi Racing - ' + this.blogPost?.data?.attributes?.title,
+      title: this.blogPost?.data?.attributes?.title + " | SUHGOI",
     }
   },
   data() {

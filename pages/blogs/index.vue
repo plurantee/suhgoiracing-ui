@@ -75,7 +75,7 @@ import gql from 'graphql-tag'
 
 export default {
   head: {
-    title: 'Suhghoi Racing - Blogs',
+    title: 'Latest | SUHGOI',
   },
   data() {
     return {
