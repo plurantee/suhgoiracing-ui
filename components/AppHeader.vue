@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="limit-width container-fluid">
             <a class="navbar-brand" href="#"><img class="img navbar-icon" src="images/suhgoi.png" alt="suhgoi"></a>
             <div class="h-line"></div>
@@ -38,11 +38,11 @@ Pallete:
 #6F4E49 - kinda brown
 */
 .nav-link {
-  color: #E8DEDD!important;
+  color: #000!important;
 }
 .h-line {
   display:none;
-  background-color: #E8DEDD;
+  background-color: #000;
   width: 1.2px;
   height: 30px;
   padding: 0;
@@ -56,7 +56,7 @@ Pallete:
 }
 
 .limit-width {
-  max-width: 1650px;
+  max-width: 1450px;
 }
 ul {
     list-style-type: none;
