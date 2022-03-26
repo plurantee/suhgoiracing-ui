@@ -1,35 +1,16 @@
 <template>
-  <div>
-    <div v-if="$apollo.loading">
+
+  <div class="row col-md-12">
+        <div v-if="$apollo.loading">
       <h1>Loading...</h1>
     </div>
-    <div v-else class=" col-md-12">
-      <div class="col-md-12 row">
-        <div class="col-md-8 white-card card latest-blog-container">
-          <div class="latest-blog-image">
-                      <img
-            :src="`${blogPosts.data[0].attributes.imageLink}`"
-            class=" "
-            :alt="`${blogPosts.data[0].attributes.title}`"
-          />
-          </div>
-
-          <div class="latest-blog-text">
-            <a target="_blank" :href="`blog/${blogPosts.data[0].id}`">
-            {{blogPosts.data[0].attributes.title}}
-            </a>
-          </div>
-          </div>
-          <div class="col-md-3"></div>
-      </div>
-      <div class="blog-list">
-        <div class="col-md-12 row">
-<div class="mw-limited row col-md-8">
-          <div
-            class="white-card col-md-12"
-            v-for="blogPost in blogPosts.data"
-            v-bind:key="blogPost.id"
-          >
+    <div v-else class="col-md-8">
+          <div class="blog-list">
+        <div class="mw-limited col-md-12">              <div
+        class="white-card col-md-12"
+        v-for="blogPost in blogPosts.data"
+        v-bind:key="blogPost.id"
+      >
         <div class="row col-md-12">
           <img
             :src="`${blogPost.attributes.imageLink}`"
@@ -37,7 +18,7 @@
             :alt="`${blogPost.attributes.title}`"
           />
           <div class="card-body col-md-6">
-            <p class="category">{{ blogPost.attributes.category }}</p>
+            <p>{{ blogPost.attributes.category }}</p>
             <a target="_blank" :href="`blog/${blogPost.id}`">
               <h2>{{ blogPost.attributes.title }}</h2>
             </a>
@@ -47,12 +28,24 @@
           </div>
         </div>
       </div></div>
-      <div class="col-md-4"></div>
-        </div>
-
 
       </div>
+    </div>
+    <div class="col-md-4">
 
+    </div>
+    <div v-if="!$apollo.loading" class="page-info">
+      <button
+        v-bind:disabled="pageNumber < 2"
+        class="btn page-button"
+        v-on:click="previousPage()"
+      >&lt;</button>
+      {{ pageNumber }}
+      <button
+        v-bind:disabled="pageNumber >= blogPosts.meta.pagination.pageCount"
+        class="btn page-button"
+        v-on:click="nextPage(blogPosts.data)"
+      >&gt;</button>
     </div>
   </div>
 </template>
@@ -60,11 +53,8 @@
 .card-body > a {
   color: inherit;
 }
-.latest-blog {
-  display:flex;
-    align-items: center;
-  justify-content: center;
-
+.list-img {
+  max-width: 95%;
 }
 .blog-list {
   display: flex;
@@ -72,56 +62,29 @@
   align-items: center;
 }
 .mw-limited {
-  max-width: 942px;
+  max-width: 1000px;
 }
-.latest-blog-container {
-  position: relative;
+.display-none {
+  display: none;
 }
-
-.latest-blog-text > a {
-  color: inherit;
-  font-size: 1.5rem;
-
+.page-button {
+  border-color: black;
+  margin-left: 30px;
+  margin-right: 30px;
 }
-.latest-blog-image > img {
-  max-width: 100%;
-  width: 900px;
-}
-.list-img {
-  max-width: 95%;
+.page-info {
+  margin: 15px 40px;
+  display: flex;
+  justify-content: center;
 }
 .latest-news {
   display: flex;
-}
-.card-body {
+  justify-content: center;
 }
 .white-card {
   background-color: white;
   margin: 10px 10px;
   padding: 20px;
-}
-
-.card {
-  display: flex;
-}
-.latest-blog-text {
-  position: relative;
-}
-@media only screen and (min-width: 992px) {
-  .latest-blog {
-    margin-left: 20px;
-  }
-  .latest-blog-text > a {
-  color: white;
-  background-color: black;
-  font-size: 1.5rem;
-  text-decoration: underline;
-}
-.latest-blog-text {
-  position: absolute;
-  bottom: 30px;
-  left: 2vw;
-}
 }
 </style>
 <script>
@@ -129,9 +92,23 @@ import gql from 'graphql-tag'
 //import { blogsQuery } from '~graphql/query'
 
 export default {
+  head: {
+    title: 'Latest | SUHGOI',
+  },
   data() {
     return {
-      pageNumber: 1
+      pageNumber: 1,
+      count: 0,
+    }
+  },
+  methods: {
+    nextPage() {
+      this.pageNumber++;
+    },
+    previousPage(blogPosts) {
+      if (this.pageNumber > 0) {
+        this.pageNumber--;
+      }
     }
   },
   apollo: {
@@ -140,7 +117,7 @@ export default {
 
       query: gql`query GET_BLOG_POSTS($pageNumber: Int!) {
         blogPosts(pagination:{page: $pageNumber, pageSize: 3}, sort: "id:DESC") {
-          meta{
+    			meta{
             pagination{
               pageCount
             }

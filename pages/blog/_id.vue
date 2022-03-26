@@ -3,21 +3,33 @@
     <div v-if="$apollo.loading">
       <h1>Loading...</h1>
     </div>
-    <div v-else class="article">
+    <div v-else class="article col-md-12 row">
+      <div class="blog-content col-md-8">
+      <h3 class="blog-title">{{ blogPost.data.attributes.title }}</h3>
+      <p class="blog-summary">{{ blogPost.data.attributes.summary }}</p>
       <div class="image-head">
         <img class="img-fluid" :src="`${blogPost.data.attributes.imageLink}`" />
       </div>
       <div class="article-body">
-        <h3>{{ blogPost.data.attributes.title }}</h3>
         <div class="" v-html="$md.render(blogPost.data.attributes.body)"></div>
+      </div>
+      <div class="fb-like" :data-href="`${url}`" data-width="" data-layout="standard" data-action="like" data-size="large" data-share="true"></div>
       </div>
     </div>
   </div>
 </template>
 <style scoped>
-.article-body {
-  max-width: 1600px;
+.blog-summary {
+  color: #666;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+.blog-content {
   margin: 30px 30px;
+}
+.article-body {
+  margin-top: 50px;
+  max-width: 1600px;
 }
 .article {
   margin-top: 2vh;
@@ -40,12 +52,13 @@ import gql from 'graphql-tag'
 export default {
   head() {
     return {
-      title: 'Suhghoi Racing - ' + this.blogPost?.data?.attributes?.title,
+      title: this.blogPost?.data?.attributes?.title + " | SUHGOI",
     }
   },
   data() {
     return {
       blogId: this.$route.params.id,
+      url: this.$route.path
     }
   },
   methods: {

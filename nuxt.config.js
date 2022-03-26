@@ -1,7 +1,7 @@
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'Suhghoi Racing',
+        title: 'SUHGOI',
         htmlAttrs: {
             lang: 'en'
         },
@@ -25,7 +25,9 @@ export default {
     plugins: [
         { src: 'static/js/bootstrap.bundle.min.js', mode: 'client' }
     ],
-
+    static: {
+      prefix: false
+    },
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
 

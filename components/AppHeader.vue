@@ -1,7 +1,8 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Suhghoi Racing</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+        <div class="limit-width container-fluid">
+            <a class="navbar-brand" href="#"><img class="img navbar-icon" src="/images/suhgoi.png" alt="suhgoi"></a>
+            <div class="h-line"></div>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -16,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <NuxtLink class="nav-link active" aria-current="page" to="/">Home</NuxtLink>
+                        <NuxtLink class="nav-link" aria-current="page" to="/">Home</NuxtLink>
                     </li>
                     <li class="nav-item">
                         <NuxtLink class="nav-link" to="/blogs">Blogs</NuxtLink>
@@ -28,6 +29,35 @@
 </template>
 
 <style scoped>
+/*
+Pallete:
+#B77670 - pink
+#800000 - red
+#000000 - black
+#E8DEDD - darkish white
+#6F4E49 - kinda brown
+*/
+.nav-link {
+  color: #000!important;
+}
+.h-line {
+  display:none;
+  background-color: #000;
+  width: 1.2px;
+  height: 30px;
+  padding: 0;
+}
+.navbar-icon {
+  width: 200px;
+}
+.nav-item {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.limit-width {
+  max-width: 1450px;
+}
 ul {
     list-style-type: none;
     display: flex;
@@ -39,6 +69,14 @@ li {
     display: flex;
 }
 .bg-pink {
-    background-color: rgb(255, 198, 198);
+    background-color: #B77670;
+}
+
+
+
+@media only screen and (min-width: 992px) {
+  .h-line {
+  display:inline;
+}
 }
 </style>
