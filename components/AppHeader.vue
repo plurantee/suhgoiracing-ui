@@ -1,7 +1,7 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <div class="limit-width container-fluid">
-            <a class="navbar-brand" href="#"><img class="img navbar-icon" src="images/suhgoi.png" alt="suhgoi"></a>
+            <a class="navbar-brand" href="#"><img class="img navbar-icon" src="/images/suhgoi.png" alt="suhgoi"></a>
             <div class="h-line"></div>
             <button
                 class="navbar-toggler"

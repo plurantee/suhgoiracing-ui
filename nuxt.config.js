@@ -25,7 +25,9 @@ export default {
     plugins: [
         { src: 'static/js/bootstrap.bundle.min.js', mode: 'client' }
     ],
-
+    static: {
+      prefix: false
+    },
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
 
